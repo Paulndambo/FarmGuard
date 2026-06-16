@@ -2,7 +2,7 @@
 
 This document describes the REST API exposed by the **FarmGuard AI Django REST backend**.
 
-It is written for a frontend developer or AI agent building a frontend dashboard for the backend.
+I have written it for a frontend developer who is integrating the backend with a frontend app using a frontend library/framework of choice.
 
 The backend provides:
 
@@ -169,9 +169,9 @@ Example:
 
 ---
 
-# 5. Recommended Frontend Workflow
+# 5. All Endpoints
 
-A normal dashboard flow should look like this:
+A normal frontend dashboard flow should look like this:
 
 ```txt
 1. POST /api/auth/register/ or POST /api/auth/login/
@@ -217,7 +217,7 @@ POST /api/farms/{id}/generate-insight/
 
 # 6. Public Endpoints
 
-These endpoints do **not** require authentication.
+Basically these are endpoints which do **not** require authentication.
 
 ---
 
@@ -251,9 +251,6 @@ curl http://127.0.0.1:8000/api/health/
 }
 ```
 
-### Frontend usage
-
-Use this endpoint for deployment checks or simple backend availability tests.
 
 ---
 
@@ -1335,6 +1332,7 @@ The backend risk engine considers:
 - Moderate wind
 - High temperatures
 - Low humidity combined with heat
+- Crop specific weather needs.
 
 ### Frontend usage
 

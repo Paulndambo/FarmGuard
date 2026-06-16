@@ -256,7 +256,7 @@ Authenticated endpoints:
 For more backend API details, see:
 
 ```txt
-backend/ENDPOINTS.md
+backend/USAGE_GUIDE.md
 ```
 
 ## Important Data Flow
@@ -320,13 +320,6 @@ Coverage thresholds are configured in:
 frontend/vitest.config.ts
 ```
 
-Current frontend coverage gate:
-
-- Lines: 70%
-- Statements: 70%
-- Functions: 70%
-- Branches: 60%
-
 ## Build and Lint
 
 Frontend:
@@ -360,7 +353,6 @@ This keeps older saved advisories readable even if Gemini returned Markdown-styl
 
 ## Known Development Notes
 
-- Farm alert preview currently uses the farm owner's `phone_number`. The `Farm.contact_phone` field was removed from the backend model.
 - History endpoints are available for frontend display and debugging.
 - The frontend stores JWT tokens in `localStorage` under:
   - `farmguard_access`
