@@ -152,6 +152,58 @@ Then open:
 http://127.0.0.1:5173
 ```
 
+## Docker Setup
+
+The project includes Docker support for both sub-applications:
+
+- `backend/Dockerfile` builds the Django API and serves it with Gunicorn.
+- `frontend/Dockerfile` builds the Vite React app and serves the static files with Nginx.
+- `docker-compose.yml` runs both services together.
+
+From the parent `FarmGuard/` folder:
+
+```bash
+docker compose build
+docker compose up
+```
+
+Or run in the background:
+
+```bash
+docker compose up -d --build
+```
+
+Docker publishes:
+
+```txt
+Frontend: http://127.0.0.1:5173
+Backend:  http://127.0.0.1:8000
+```
+
+The backend container reads environment variables from:
+
+```txt
+backend/.env
+```
+
+The Docker Compose setup stores SQLite data in a named Docker volume mounted at `/data` inside the backend container. The backend uses:
+
+```txt
+SQLITE_PATH=/data/db.sqlite3
+```
+
+Useful Docker commands:
+
+```bash
+docker compose ps
+docker compose logs -f backend
+docker compose logs -f frontend
+docker compose down
+docker compose down -v
+```
+
+Use `docker compose down -v` only when you intentionally want to remove the persisted local SQLite volume.
+
 Typical user flow:
 
 1. Register or log in.
@@ -386,4 +438,3 @@ Then manually verify:
 6. Generate AI insight.
 7. Preview alert.
 8. Navigate away and reopen the farm detail page to confirm saved data appears automatically.
-
