@@ -1,7 +1,18 @@
 import type { ApiErrorPayload } from './types'
 
+function stripTrailingSlash(value: string) {
+  return value.replace(/\/$/, '')
+}
+
+const envApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim()
+const envBackendBaseUrl = import.meta.env.VITE_BACKEND_BASE_URL?.trim()
+
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') ?? 'http://127.0.0.1:8000/api'
+  envApiBaseUrl
+    ? stripTrailingSlash(envApiBaseUrl)
+    : envBackendBaseUrl
+      ? `${stripTrailingSlash(envBackendBaseUrl)}/api`
+      : 'http://127.0.0.1:8000/api'
 
 export function formatApiError(payload: ApiErrorPayload, fallback: string) {
   if (!payload) return fallback
