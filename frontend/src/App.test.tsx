@@ -2,9 +2,10 @@ import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanAdvisoryText, parseAdvisorySections } from './advisory'
+import { API_BASE_URL } from './api'
 import App from './App'
 
-const apiBase = 'http://127.0.0.1:8000/api'
+const apiBase = API_BASE_URL
 
 const user = {
   id: 'user-1',

@@ -30,6 +30,10 @@ describe('formatApiError', () => {
 })
 
 describe('apiRequest', () => {
+  it('derives the API URL from the frontend environment', () => {
+    expect(API_BASE_URL).toBe('https://farmguard-01jl.onrender.com/api')
+  })
+
   it('adds JSON headers and returns parsed data for successful responses', async () => {
     const fetchMock = vi.fn(() => jsonResponse({ ok: true }))
     vi.stubGlobal('fetch', fetchMock)
