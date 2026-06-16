@@ -150,6 +150,18 @@ describe('App authentication', () => {
     expect(screen.getByRole('button', { name: 'Create account' })).toBeInTheDocument()
   })
 
+  it('switches between registration and login forms', async () => {
+    mockFetch(() => jsonResponse({}))
+
+    render(<App />)
+
+    await userEvent.click(screen.getByRole('button', { name: 'Login' }))
+
+    expect(screen.getByRole('button', { name: 'Sign in' })).toBeInTheDocument()
+    expect(screen.getByLabelText('Password')).toHaveAttribute('autocomplete', 'current-password')
+    expect(screen.queryByLabelText('Confirm password')).not.toBeInTheDocument()
+  })
+
   it('registers a user, stores tokens, and loads the dashboard', async () => {
     const fetchMock = mockFetch((url, init) => {
       const path = url.href.replace(apiBase, '')
