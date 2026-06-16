@@ -1,0 +1,17 @@
+[run]
+source =
+    core
+    farms
+    services
+    users
+omit =
+    */migrations/*
+    */tests.py
+    */admin.py
+    */apps.py
+    */__init__.py
+
+[report]
+show_missing = True
+skip_empty = True
+fail_under = 90
